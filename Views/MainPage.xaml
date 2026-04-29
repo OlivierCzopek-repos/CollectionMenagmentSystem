@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:CollectionManagementSystem.Models"
+             x:Class="CollectionManagementSystem.MainPage"
+             Title="Twoje Kolekcje"
+             BackgroundColor="#FAF4ED"> 
+
+    <Grid RowDefinitions="Auto, *" Margin="20">
+
+        <Button Text="Dodaj Kolekcje" 
+                Grid.Row="0" 
+                Clicked="OnAddCollectionClicked" 
+                BackgroundColor="#D64933" 
+                TextColor="White"
+                CornerRadius="8"
+                Margin="0,0,0,20"/>
+
+        <CollectionView Grid.Row="1"
+                        ItemsSource="{Binding Collections}" 
+                        SelectionMode="Single"
+                        SelectionChanged="OnSelectionChanged">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:Collection">
+                    <Grid Padding="15" Margin="0,5">
+                        <Frame BackgroundColor="#2B303A" CornerRadius="10" HasShadow="True">
+                            <Label Text="{Binding Name}" 
+                                   FontSize="18" 
+                                   FontAttributes="Bold" 
+                                   TextColor="#92DCE5" 
+                                   HorizontalOptions="Center" 
+                                   VerticalOptions="Center" />
+                        </Frame>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+
+</ContentPage>

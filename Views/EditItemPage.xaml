@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:CollectionManagementSystem.Models"
+             x:Class="CollectionManagementSystem.Views.EditItemPage"
+             Title="Edycja Elementu"
+             BackgroundColor="#FAF4ED">
+
+    <ScrollView Margin="20">
+        <StackLayout Spacing="15" x:Name="EditorLayout">
+            <Label Text="Nazwa" FontAttributes="Bold" TextColor="#2B303A" />
+            <Entry Text="{Binding Item.Name}" Placeholder="Wprowadz nazwe" BackgroundColor="White" TextColor="Black"/>
+
+            <Label Text="Cena" FontAttributes="Bold" TextColor="#2B303A" />
+            <Entry Text="{Binding Item.Price}" Keyboard="Numeric" Placeholder="0.00" BackgroundColor="White" TextColor="Black"/>
+
+            <Label Text="Status" FontAttributes="Bold" TextColor="#2B303A" />
+            <Picker SelectedItem="{Binding Item.Status}" Title="Wybierz status" BackgroundColor="White" TextColor="Black">
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>Nowy</x:String>
+                        <x:String>Uzywany</x:String>
+                        <x:String>Na sprzedaz</x:String>
+                        <x:String>Sprzedany</x:String>
+                        <x:String>Chce kupic</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
+
+            <Label Text="Ocena (1-10)" FontAttributes="Bold" TextColor="#2B303A" />
+            <Slider Minimum="1" Maximum="10" Value="{Binding Item.Rating}" ThumbColor="#D64933" />
+            <Label Text="{Binding Item.Rating, StringFormat='Aktualna ocena: {0:F0}'}" HorizontalOptions="Center" TextColor="#2B303A"/>
+
+            <Label Text="Komentarz" FontAttributes="Bold" TextColor="#2B303A" />
+            <Editor Text="{Binding Item.Comment}" AutoSize="TextChanges" BackgroundColor="White" TextColor="Black"/>
+
+           
+            <StackLayout x:Name="DynamicColumnsLayout" Spacing="10" />
+
+            <Button Text="Zapisz" Clicked="OnSaveClicked" BackgroundColor="#2B303A" TextColor="#92DCE5" CornerRadius="8" Margin="0,20,0,0"/>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
